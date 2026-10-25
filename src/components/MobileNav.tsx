@@ -3,18 +3,18 @@ import {
   Menu, 
   X, 
   FileDown, 
-  Mail, 
+  Home, 
   FolderGit2, 
   User, 
   Cpu, 
   Briefcase, 
   GraduationCap, 
-  Award,
-  Home
+  Award, 
+  Mail
 } from 'lucide-react';
-import { GithubIcon, LinkedinIcon } from './Icons';
 import confetti from 'canvas-confetti';
 import { personalInfo } from '../data/portfolioData';
+import { GithubIcon, LinkedinIcon } from './Icons';
 
 interface MobileNavProps {
   activeSection: string;
@@ -25,7 +25,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({ activeSection }) => {
 
   const navLinks = [
     { id: 'hero', label: 'Overview', icon: Home },
-    { id: 'projects', label: 'Featured Projects', icon: FolderGit2 },
+    { id: 'projects', label: 'Projects', icon: FolderGit2 },
     { id: 'about', label: 'About Me', icon: User },
     { id: 'skills', label: 'Technical Skills', icon: Cpu },
     { id: 'experience', label: 'Experience', icon: Briefcase },
@@ -44,7 +44,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({ activeSection }) => {
 
   const handleDownload = () => {
     confetti({
-      particleCount: 50,
+      particleCount: 40,
       spread: 60,
       origin: { y: 0.1, x: 0.5 },
       colors: ['#8b5cf6', '#3b82f6', '#06b6d4']
@@ -52,23 +52,21 @@ export const MobileNav: React.FC<MobileNavProps> = ({ activeSection }) => {
   };
 
   return (
-    <div className="lg:hidden fixed top-0 left-0 right-0 z-40 bg-dark-950/85 backdrop-blur-xl border-b border-white/[0.08]">
-      <div className="flex items-center justify-between px-4 sm:px-6 h-16">
+    <header className="lg:hidden fixed top-0 left-0 right-0 z-40 bg-dark-900/95 backdrop-blur-md border-b border-white/[0.08]">
+      <div className="flex items-center justify-between px-4 sm:px-6 h-14">
         {/* Brand */}
         <button 
           onClick={() => handleNavClick('hero')} 
-          className="flex items-center space-x-3 text-left focus:outline-none"
+          className="flex items-center space-x-2.5 text-left cursor-pointer"
         >
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-electric-purple to-electric-blue p-[2px]">
-            <div className="w-full h-full bg-dark-950 rounded-[10px] flex items-center justify-center font-mono font-bold text-sm text-electric-cyan">
-              VP
-            </div>
+          <div className="w-8 h-8 rounded-lg bg-purple-600 flex items-center justify-center font-mono font-bold text-xs text-white">
+            VP
           </div>
           <div>
-            <span className="font-bold text-sm text-white tracking-tight block">
+            <span className="font-bold text-xs text-white block">
               {personalInfo.preferredName}
             </span>
-            <span className="text-[10px] text-emerald-400 font-medium block">
+            <span className="text-[10px] text-emerald-400 block font-medium">
               Open to Internships
             </span>
           </div>
@@ -78,28 +76,28 @@ export const MobileNav: React.FC<MobileNavProps> = ({ activeSection }) => {
         <div className="flex items-center space-x-2">
           <a
             href={personalInfo.resumeDownloadUrl}
-            download={personalInfo.resumeFileName}
+            download="Viraj_Rajkumar_Patait_Resume.pdf"
             onClick={handleDownload}
-            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-electric-purple/20 border border-electric-purple/30 text-electric-violet text-xs font-semibold hover:bg-electric-purple/30 transition-colors"
+            className="flex items-center space-x-1 px-2.5 py-1.5 rounded-lg bg-purple-600 text-white text-xs font-semibold"
           >
             <FileDown className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Resume</span>
+            <span className="text-[11px]">Resume</span>
           </a>
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/[0.08] transition-colors focus:outline-none"
-            aria-label="Toggle Menu"
+            className="p-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/[0.06] cursor-pointer"
+            aria-label="Toggle navigation menu"
           >
-            {isOpen ? <X className="w-6 h-6 text-electric-cyan" /> : <Menu className="w-6 h-6" />}
+            {isOpen ? <X className="w-5 h-5 text-cyan-400" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Dropdown Menu */}
+      {/* Slide-down Mobile Menu */}
       {isOpen && (
-        <div className="border-t border-white/[0.08] bg-dark-900/98 px-5 py-6 space-y-4 animate-in slide-in-from-top-4 duration-200 shadow-2xl">
-          <nav className="grid grid-cols-2 gap-2" aria-label="Mobile Navigation">
+        <div className="border-t border-white/[0.08] bg-dark-950 px-4 py-4 space-y-3">
+          <nav className="grid grid-cols-2 gap-1.5" aria-label="Mobile Navigation Menu">
             {navLinks.map((link) => {
               const Icon = link.icon;
               const isActive = activeSection === link.id;
@@ -108,20 +106,20 @@ export const MobileNav: React.FC<MobileNavProps> = ({ activeSection }) => {
                 <button
                   key={link.id}
                   onClick={() => handleNavClick(link.id)}
-                  className={`flex items-center space-x-2.5 px-3 py-2.5 rounded-xl text-xs font-medium text-left transition-colors ${
+                  className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-xs font-medium text-left cursor-pointer ${
                     isActive
-                      ? 'bg-electric-purple/20 text-electric-violet border border-electric-purple/30'
-                      : 'text-slate-300 hover:text-white hover:bg-white/[0.05]'
+                      ? 'bg-purple-600 text-white'
+                      : 'text-slate-300 hover:text-white hover:bg-white/[0.04]'
                   }`}
                 >
-                  <Icon className="w-4 h-4 text-electric-cyan shrink-0" />
+                  <Icon className="w-3.5 h-3.5 shrink-0" />
                   <span className="truncate">{link.label}</span>
                 </button>
               );
             })}
           </nav>
 
-          <div className="pt-3 border-t border-white/[0.08] flex items-center justify-between text-xs text-slate-400">
+          <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs text-slate-400">
             <span className="font-mono text-[11px] truncate">{personalInfo.email}</span>
             <div className="flex space-x-3">
               <a 
@@ -129,6 +127,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({ activeSection }) => {
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="hover:text-white"
+                aria-label="GitHub"
               >
                 <GithubIcon className="w-4 h-4" />
               </a>
@@ -136,13 +135,15 @@ export const MobileNav: React.FC<MobileNavProps> = ({ activeSection }) => {
                 href={personalInfo.linkedin} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="hover:text-electric-blue"
+                className="hover:text-blue-400"
+                aria-label="LinkedIn"
               >
                 <LinkedinIcon className="w-4 h-4" />
               </a>
               <a 
                 href={`mailto:${personalInfo.email}`}
-                className="hover:text-electric-cyan"
+                className="hover:text-cyan-400"
+                aria-label="Email"
               >
                 <Mail className="w-4 h-4" />
               </a>
@@ -150,6 +151,6 @@ export const MobileNav: React.FC<MobileNavProps> = ({ activeSection }) => {
           </div>
         </div>
       )}
-    </div>
+    </header>
   );
 };

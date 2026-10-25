@@ -28,7 +28,7 @@ export const App: React.FC = () => {
     ];
 
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 250;
+      const scrollPosition = window.scrollY + 200;
 
       for (let i = sectionIds.length - 1; i >= 0; i--) {
         const element = document.getElementById(sectionIds[i]);
@@ -46,18 +46,18 @@ export const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-dark-950 text-slate-100 relative selection:bg-electric-purple/30 selection:text-white">
+    <div className="min-h-screen bg-dark-950 text-slate-100 relative font-sans antialiased selection:bg-purple-600/30 selection:text-white">
       {/* Subtle interactive constellation & neural particle canvas */}
       <NetworkBackground />
 
       {/* Fixed Sidebar on Desktop */}
       <Sidebar activeSection={activeSection} />
 
-      {/* Top Navigation on Mobile & Tablet */}
+      {/* Sticky Navigation on Mobile & Tablet */}
       <MobileNav activeSection={activeSection} />
 
       {/* Main Content Area: Offset by desktop sidebar width */}
-      <main className="lg:pl-72 xl:pl-80 relative z-10 transition-all duration-300">
+      <main className="lg:pl-64 xl:pl-72 relative z-10 transition-all duration-300">
         <Hero />
         <Projects />
         <About />

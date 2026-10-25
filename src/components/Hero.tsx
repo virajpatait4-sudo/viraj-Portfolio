@@ -2,101 +2,85 @@ import React from 'react';
 import { 
   ArrowRight, 
   FileDown, 
-  Sparkles, 
-  CheckCircle2, 
-  Terminal, 
-  Layers, 
-  Database, 
-  BrainCircuit,
-  ExternalLink
+  GraduationCap, 
+  Database,
+  Mail,
+  Network
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import { personalInfo, stats } from '../data/portfolioData';
+import { personalInfo } from '../data/portfolioData';
 
 export const Hero: React.FC = () => {
   const handleDownload = () => {
     confetti({
-      particleCount: 80,
-      spread: 75,
+      particleCount: 50,
+      spread: 60,
       origin: { y: 0.6, x: 0.5 },
-      colors: ['#8b5cf6', '#3b82f6', '#06b6d4', '#10b981']
+      colors: ['#8b5cf6', '#3b82f6', '#06b6d4']
     });
   };
 
-  const scrollToProjects = () => {
-    const el = document.getElementById('projects');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const scrollToContact = () => {
-    const el = document.getElementById('contact');
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section id="hero" className="relative pt-24 lg:pt-16 pb-16 lg:pb-24 overflow-hidden">
+    <section id="hero" className="relative pt-20 lg:pt-16 pb-16 lg:pb-24 overflow-hidden border-b border-white/[0.06]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Availability Badge */}
-        <div className="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full bg-dark-850/90 border border-electric-purple/30 text-xs text-slate-300 shadow-lg shadow-electric-purple/10 mb-6 backdrop-blur-md">
-          <span className="flex h-2 w-2 relative">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-          </span>
-          <span className="text-slate-200 font-medium tracking-wide">
+        <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-dark-900 border border-purple-500/30 text-xs text-slate-300 mb-6 shadow-sm">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span className="font-medium text-slate-200">
             {personalInfo.status}
           </span>
-          <span className="text-slate-400">|</span>
-          <span className="text-electric-violet font-mono text-[11px] font-semibold">
+          <span className="text-slate-500">•</span>
+          <span className="text-cyan-400 font-mono text-[11px] font-semibold">
             CGPA: 8.75/10
           </span>
         </div>
 
-        {/* Main Grid: Headline & Interactive Pipeline Terminal */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+        {/* Hero Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
-          {/* Left Column: Text & CTAs */}
+          {/* Left Column: Heading & CTAs */}
           <div className="lg:col-span-7 space-y-6">
             <div className="space-y-3">
-              <h2 className="text-sm uppercase tracking-widest font-mono text-electric-cyan font-semibold">
-                Portfolio & Engineering Architecture
-              </h2>
-              <h1 className="text-4xl sm:text-5xl xl:text-6xl font-extrabold text-white tracking-tight leading-[1.12]">
-                Hi, I'm{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-electric-violet">
-                  {personalInfo.name}
-                </span>
+              <span className="text-xs font-mono uppercase tracking-widest text-cyan-400 font-semibold block">
+                Portfolio & Academic Work
+              </span>
+              <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+                {personalInfo.name}
               </h1>
-              <p className="text-lg sm:text-xl font-medium text-slate-300 leading-snug">
+              <p className="text-lg sm:text-xl font-medium text-slate-200 leading-snug">
                 Computer Science (Data Science) Undergraduate @{' '}
-                <span className="text-white font-semibold underline decoration-electric-purple/50 underline-offset-4">
-                  VIT Vellore
-                </span>
+                <span className="text-purple-300 font-semibold">VIT Vellore</span>
               </p>
             </div>
 
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl">
-              Second-year Computer Science (Data Science) student with an academic record of{' '}
-              <strong className="text-white font-semibold">8.75/10 CGPA</strong>. Focused on engineering end-to-end data analytics solutions, star schema BI architectures, and predictive machine learning models with Python, Scikit-learn, SQL, and Power BI.
+              Second-year Computer Science (Data Science) undergraduate at Vellore Institute of Technology with an academic record of{' '}
+              <strong className="text-white font-semibold">8.75/10 CGPA</strong>. Seeking internship opportunities to apply technical skills in machine learning, data engineering, business intelligence, and software development to solve real-world problems.
             </p>
 
-            {/* CTAs */}
+            {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-3.5 pt-2">
               <button
-                onClick={scrollToProjects}
-                className="flex items-center space-x-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-electric-purple via-electric-indigo to-electric-blue hover:from-electric-violet hover:to-electric-indigo text-white text-sm font-semibold shadow-lg shadow-electric-purple/30 hover:shadow-electric-purple/50 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
+                onClick={() => scrollTo('projects')}
+                className="flex items-center space-x-2 px-5 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-sm font-semibold shadow-lg shadow-purple-600/25 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
               >
-                <span>View Featured Projects</span>
+                <span>View Projects</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
               <a
                 href={personalInfo.resumeDownloadUrl}
-                download={personalInfo.resumeFileName}
+                download="Viraj_Rajkumar_Patait_Resume.pdf"
                 onClick={handleDownload}
-                className="flex items-center space-x-2 px-5 py-3.5 rounded-xl bg-dark-850 hover:bg-dark-800 border border-white/[0.12] hover:border-electric-purple/50 text-white text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 shadow-sm"
+                className="flex items-center space-x-2 px-5 py-3 rounded-xl bg-dark-900 hover:bg-dark-850 border border-white/[0.12] hover:border-purple-500/40 text-white text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-sm"
               >
-                <FileDown className="w-4 h-4 text-electric-cyan" />
+                <FileDown className="w-4 h-4 text-cyan-400" />
                 <span>Download Resume</span>
                 <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-white/[0.08] text-slate-300">
                   PDF
@@ -104,134 +88,95 @@ export const Hero: React.FC = () => {
               </a>
 
               <button
-                onClick={scrollToContact}
-                className="flex items-center space-x-1.5 px-4 py-3.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/[0.05] text-sm font-medium transition-colors"
+                onClick={() => scrollTo('contact')}
+                className="flex items-center space-x-1.5 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-white/[0.04] text-sm font-medium transition-colors cursor-pointer"
               >
-                <span>Get In Touch</span>
+                <Mail className="w-4 h-4" />
+                <span>Contact Me</span>
               </button>
             </div>
 
-            {/* Micro verification pills */}
-            <div className="flex flex-wrap items-center gap-3 pt-2 text-xs text-slate-400">
-              <div className="flex items-center space-x-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                <span>Verified Resume Details</span>
+            {/* Key Verified Stats */}
+            <div className="pt-4 flex flex-wrap gap-4 text-xs text-slate-400 border-t border-white/[0.06]">
+              <div className="flex items-center space-x-2">
+                <GraduationCap className="w-4 h-4 text-purple-400" />
+                <span>B.Tech CSE (Data Science) • 2024–2028</span>
               </div>
-              <span className="text-slate-600">•</span>
-              <div className="flex items-center space-x-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                <span>Active GitHub & LinkedIn</span>
-              </div>
-              <span className="text-slate-600">•</span>
-              <div className="flex items-center space-x-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                <span>3 Google Cloud Badges</span>
+              <span className="text-slate-600 hidden sm:inline">•</span>
+              <div className="flex items-center space-x-2">
+                <Database className="w-4 h-4 text-cyan-400" />
+                <span>MySQL, Python, Power BI & Scikit-learn</span>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Subtle Animated Technology-Inspired Visual */}
-          <div className="lg:col-span-5">
-            <div className="relative group">
-              {/* Outer decorative gradient glow */}
-              <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-electric-purple/30 via-electric-blue/30 to-electric-cyan/20 blur-xl opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+          {/* Right Column: Visually attractive & subtle network / globe graphic */}
+          <div className="lg:col-span-5 flex justify-center">
+            <div className="relative w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center">
+              {/* Soft glow background */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-purple-600/15 via-blue-600/10 to-cyan-500/15 blur-2xl pointer-events-none" />
 
-              {/* Interactive Code / ML Pipeline Card */}
-              <div className="relative rounded-2xl bg-dark-900/90 border border-white/[0.12] shadow-2xl overflow-hidden backdrop-blur-xl">
-                {/* Window header */}
-                <div className="flex items-center justify-between px-4 py-3 border-b border-white/[0.08] bg-dark-950/60">
-                  <div className="flex items-center space-x-2">
-                    <span className="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
-                    <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
-                    <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
-                  </div>
-                  <div className="flex items-center space-x-1.5 text-[11px] font-mono text-slate-400">
-                    <Terminal className="w-3.5 h-3.5 text-electric-cyan" />
-                    <span>viraj_pipeline.py</span>
-                  </div>
-                  <div className="w-10"></div>
-                </div>
+              {/* Decorative SVG Globe / Network Mesh */}
+              <svg 
+                viewBox="0 0 320 320" 
+                className="w-full h-full relative z-10 drop-shadow-[0_0_25px_rgba(139,92,246,0.2)]"
+              >
+                <defs>
+                  <linearGradient id="orbitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.7" />
+                    <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.4" />
+                    <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.7" />
+                  </linearGradient>
+                  <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.25" />
+                    <stop offset="100%" stopColor="#05070d" stopOpacity="0" />
+                  </radialGradient>
+                </defs>
 
-                {/* Simulated IDE / Model Training Feed */}
-                <div className="p-4 sm:p-5 font-mono text-xs space-y-3 leading-relaxed text-slate-300">
-                  <div className="text-slate-500">// Machine Learning & Relational Analytics Pipeline</div>
-                  
-                  <div className="space-y-1">
-                    <p className="text-purple-400">
-                      import <span className="text-white">pandas</span> as <span className="text-cyan-300">pd</span>
-                    </p>
-                    <p className="text-purple-400">
-                      from <span className="text-white">sklearn.ensemble</span> import <span className="text-amber-300">RandomForestRegressor</span>
-                    </p>
-                  </div>
+                {/* Outer concentric orbital rings */}
+                <circle cx="160" cy="160" r="140" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="1" strokeDasharray="4 6" />
+                <circle cx="160" cy="160" r="115" fill="none" stroke="url(#orbitGrad)" strokeWidth="1.2" opacity="0.6" />
+                <circle cx="160" cy="160" r="85" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+                <circle cx="160" cy="160" r="60" fill="url(#centerGlow)" />
 
-                  <div className="py-1 px-3 rounded-lg bg-dark-950/80 border border-white/[0.06] text-[11px] text-slate-400">
-                    <span className="text-emerald-400">✓</span> Database: <span className="text-slate-200 font-semibold">MySQL Star Schema</span> (Connected)
-                  </div>
+                {/* Network Latitude & Longitude Geometrics */}
+                <ellipse cx="160" cy="160" rx="115" ry="45" fill="none" stroke="rgba(139,92,246,0.3)" strokeWidth="1" transform="rotate(-25 160 160)" />
+                <ellipse cx="160" cy="160" rx="115" ry="45" fill="none" stroke="rgba(6,182,212,0.3)" strokeWidth="1" transform="rotate(35 160 160)" />
+                <ellipse cx="160" cy="160" rx="85" ry="30" fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="1" />
 
-                  <div className="space-y-1 text-slate-400">
-                    <p>
-                      <span className="text-blue-400">model</span> = <span className="text-amber-300">RandomForestRegressor</span>(n_estimators=100)
-                    </p>
-                    <p>
-                      <span className="text-blue-400">model</span>.fit(X_train, y_train)
-                    </p>
-                  </div>
+                {/* Interconnected Node Links */}
+                <line x1="85" y1="120" x2="160" y2="90" stroke="rgba(139,92,246,0.4)" strokeWidth="1" />
+                <line x1="160" y1="90" x2="235" y2="135" stroke="rgba(59,130,246,0.4)" strokeWidth="1" />
+                <line x1="235" y1="135" x2="210" y2="210" stroke="rgba(6,182,212,0.4)" strokeWidth="1" />
+                <line x1="210" y1="210" x2="130" y2="225" stroke="rgba(139,92,246,0.4)" strokeWidth="1" />
+                <line x1="130" y1="225" x2="85" y2="120" stroke="rgba(59,130,246,0.4)" strokeWidth="1" />
+                <line x1="160" y1="90" x2="160" y2="160" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
+                <line x1="160" y1="160" x2="210" y2="210" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
+                <line x1="160" y1="160" x2="85" y2="120" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
 
-                  {/* Model Results Block */}
-                  <div className="rounded-xl bg-dark-950/90 border border-electric-purple/20 p-3 space-y-2">
-                    <div className="flex items-center justify-between text-[11px]">
-                      <span className="text-slate-400">Validation Performance:</span>
-                      <span className="text-emerald-400 font-bold">Converged</span>
-                    </div>
-                    <div className="grid grid-cols-3 gap-2 text-center">
-                      <div className="bg-dark-850 p-1.5 rounded-lg border border-white/[0.04]">
-                        <span className="block text-[10px] text-slate-500">CGPA</span>
-                        <span className="text-xs font-bold text-white">8.75</span>
-                      </div>
-                      <div className="bg-dark-850 p-1.5 rounded-lg border border-white/[0.04]">
-                        <span className="block text-[10px] text-slate-500">RMSE / MAE</span>
-                        <span className="text-xs font-bold text-electric-cyan">Optimal</span>
-                      </div>
-                      <div className="bg-dark-850 p-1.5 rounded-lg border border-white/[0.04]">
-                        <span className="block text-[10px] text-slate-500">DAX KPI</span>
-                        <span className="text-xs font-bold text-electric-violet">Live</span>
-                      </div>
-                    </div>
-                  </div>
+                {/* Network Nodes */}
+                <circle cx="160" cy="90" r="5" fill="#8b5cf6" />
+                <circle cx="85" cy="120" r="4.5" fill="#06b6d4" />
+                <circle cx="235" cy="135" r="4.5" fill="#3b82f6" />
+                <circle cx="210" cy="210" r="4" fill="#a855f7" />
+                <circle cx="130" cy="225" r="4.5" fill="#06b6d4" />
+                <circle cx="160" cy="160" r="6" fill="#ffffff" />
+                <circle cx="160" cy="160" r="10" fill="none" stroke="#8b5cf6" strokeWidth="1.5" opacity="0.8" />
 
-                  <div className="flex items-center justify-between pt-1 text-[11px] text-slate-400">
-                    <span className="flex items-center space-x-1.5 text-emerald-400">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-                      <span>Target: SDE / Data Science Intern</span>
-                    </span>
-                    <span className="text-slate-500">VIT Vellore</span>
-                  </div>
-                </div>
+                {/* Satellite Nodes on Outer Orbit */}
+                <circle cx="295" cy="130" r="3" fill="#8b5cf6" />
+                <circle cx="35" cy="190" r="3" fill="#06b6d4" />
+              </svg>
+
+              {/* Data Science Badge in center overlay */}
+              <div className="absolute -bottom-3 px-3.5 py-1.5 rounded-xl bg-dark-900 border border-white/[0.1] text-center shadow-xl backdrop-blur-md">
+                <span className="text-[11px] font-mono text-slate-300 font-medium">
+                  Data Science & Machine Learning
+                </span>
               </div>
             </div>
           </div>
 
-        </div>
-
-        {/* Highlight Stats Row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 pt-8 border-t border-white/[0.08]">
-          {stats.map((stat, i) => (
-            <div 
-              key={i} 
-              className="p-4 rounded-xl bg-dark-900/60 border border-white/[0.06] hover:border-electric-purple/30 transition-colors backdrop-blur-sm"
-            >
-              <div className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-electric-violet font-mono">
-                {stat.value}
-              </div>
-              <div className="text-xs font-semibold text-slate-200 mt-1">
-                {stat.label}
-              </div>
-              <div className="text-[11px] text-slate-500">
-                {stat.sub}
-              </div>
-            </div>
-          ))}
         </div>
 
       </div>

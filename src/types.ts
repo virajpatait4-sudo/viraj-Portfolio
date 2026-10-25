@@ -1,30 +1,21 @@
-export interface ProjectMetric {
-  label: string;
-  value: string;
-  description: string;
-}
-
 export interface Project {
   id: string;
   title: string;
   subtitle: string;
-  category: 'Machine Learning' | 'Data Analytics & BI' | 'Full-Stack & Web';
+  category: 'Machine Learning' | 'Data Analytics & BI';
   summary: string;
   problemStatement: string;
   technologies: string[];
   contributions: string[];
-  resultsAndImpact: string[];
-  metrics: ProjectMetric[];
+  keyHighlights: string[];
   githubUrl?: string;
   liveUrl?: string;
-  featured: boolean;
-  previewType: 'ecommerce-bi' | 'food-delivery' | 'road-accident' | 'portfolio';
+  previewType: 'ecommerce-bi' | 'road-accident' | 'food-delivery';
 }
 
 export interface SkillItem {
   name: string;
   category: string;
-  badge?: string;
 }
 
 export interface SkillGroup {
@@ -42,11 +33,9 @@ export interface ExperienceItem {
   division?: string;
   period: string;
   location: string;
-  type: 'Volunteering' | 'Work Experience' | 'Leadership';
+  type: string;
   description: string;
   responsibilities: string[];
-  highlights: string[];
-  badge: string;
 }
 
 export interface EducationItem {
@@ -57,50 +46,41 @@ export interface EducationItem {
   period: string;
   location?: string;
   score: string;
-  scoreType: 'CGPA' | 'Percentage';
-  scoreMax: string;
-  status: 'In Progress' | 'Completed';
-  keyCourses?: string[];
-  highlights?: string[];
+  scoreType: string;
+  status: string;
+  coursework?: string[];
 }
 
 export interface CertificationItem {
   id: string;
   title: string;
   issuer: string;
-  year: string;
-  category: 'Machine Learning' | 'Cloud Computing' | 'Generative AI';
-  badgeUrl?: string;
+  year?: string;
+  category: string;
   skills: string[];
-  verificationNote?: string;
 }
 
 export interface AchievementItem {
   id: string;
   title: string;
   issuer: string;
-  category: 'Academic' | 'Leadership' | 'Extracurricular';
   description: string;
-  metric?: string;
 }
 
 export interface PersonalInfo {
   name: string;
   preferredName: string;
   headline: string;
-  tagline: string;
   institution: string;
   degree: string;
   specialization: string;
   cgpa: string;
   cgpaMax: string;
-  expectedGraduation: string;
   email: string;
   linkedin: string;
   github: string;
   location: string;
   status: string;
-  aboutText: string[];
-  resumeFileName: string;
+  bio: string[];
   resumeDownloadUrl: string;
 }
